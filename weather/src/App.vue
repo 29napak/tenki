@@ -1,12 +1,12 @@
 <template>
   <div id="main" :class="isDay ? 'day' : 'night'">
     <div class="container my-5">
-      <h1 class="title text-center">Weather in</h1>
+      <h1 class="title text-center">天気予報</h1>
       <form class="search-location" v-on:submit.prevent="getWeather">
         <input
           type="text"
           class="form-control text-muted form-rounded p-4 shadow-sm"
-          placeholder="What City?"
+          placeholder="都市名を検索"
           v-model="citySearch"
           autocomplete="off"
         />
@@ -14,20 +14,19 @@
 
 
 
-              <!-- Top of card starts here -->
-        <div class="card-top text-center" style="margin-bottom: 15rem">
+
+        <div class="card-top text-center" style="margin-bottom: 12rem">
           <div class="city-name my-3">
             <p>{{ weather.cityName }}</p>
             <span>...</span>
             <p class="">{{ weather.country }}</p>
           </div>
         </div>
-        <!-- top of card ends here -->
+
       
 
-        <!--card middle body, card body used cos I want to just update the innerHTML -->
         <div class="card-body">
-          <!-- card middle starts here -->
+
           <div class="card-mid">
             <div class="row">
               <div class="col-12 text-center temp">
@@ -48,9 +47,7 @@
               </div>
             </div>
           </div>
-          <!-- card middle ends here -->
-
-          <!-- card bottom starts here -->
+        
           <div class="card-bottom px-5 py-4 row">
             <div class="col text-center">
               <p>{{ weather.feelsLike }}&deg;C</p>
@@ -62,7 +59,7 @@
             </div>
           </div>
 
-          <!-- card bottom ends here -->
+  
         </div>
       </div>
     </div>
@@ -102,7 +99,7 @@
       const key = "6184c19263690a59d60335b357e1e8b2";
       const baseURL = `http://api.openweathermap.org/data/2.5/weather?q=${this.citySearch}&appid=${key}&units=metric`;
 
-       //fetch weather
+    
       try {
         const response = await fetch(baseURL);
         const data = await response.json();
@@ -119,7 +116,7 @@
 
         const timeOfDay = data.weather[0].icon;
 
-        ///check for time of day
+      
         if (timeOfDay.includes("n")) {
           this.isDay = false;
         } else {
@@ -127,7 +124,7 @@
         }
 
         const mainWeather = data.weather[0].main;
-        //check weather animations
+  
         if (mainWeather.includes("Clouds")) {
           this.stormy = false;
           this.cloudy = true;
@@ -181,7 +178,6 @@
         this.cityFound = true;
         this.visible = false;
       }
-sdasfasdfsshggftd
 
     },
     },
@@ -193,6 +189,6 @@ sdasfasdfsshggftd
 </script>
 
 <style scoped>
-@import "./assets/animation.css";
+
 @import "./assets/custom.css";
 </style>
